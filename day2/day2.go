@@ -38,14 +38,11 @@ func CheckPasswordPartTwo(inputFile string, delimiter string) int {
 
 	for _, line := range splitString {
 		firstIndex, lastIndex, checkString, charCheck = LineParser(line)
-		fmt.Println(firstIndex)
-		fmt.Println(checkString)
-
-		fmt.Println(charCheck)
-		break
-		//if charCheck == checkString[firstIndex] && charCheck != checkString[lastIndex]  {
-		//	counter ++
-		//}
+		if charCheck == checkString[firstIndex - 1:firstIndex] && charCheck != checkString[lastIndex - 1: lastIndex]  {
+			counter ++
+		} else if charCheck != checkString[firstIndex - 1:firstIndex] && charCheck == checkString[lastIndex - 1: lastIndex]{
+			counter ++
+		}
 	}
 	return counter
 }
